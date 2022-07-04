@@ -14,6 +14,13 @@ from skimage import io
 import glob
 
 def read_data():
+    # get image filenames
+    train_locs = glob.glob("train/*.tif")
+    test_locs = glob.glob("test/*.tif")
+    num_train = len(train_locs)
+    num_test = len(test_locs)
+    
+    # NOTE: io.imread() reads images in as numpy.ndarray
     
 """ Above is supposed to be based on below
 
