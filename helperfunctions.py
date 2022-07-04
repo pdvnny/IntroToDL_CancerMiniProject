@@ -11,6 +11,8 @@
 ************************************************************************ """
 
 from skimage import io
+import pandas as pd
+import numpy as np
 import glob
 
 def read_data():
@@ -20,48 +22,27 @@ def read_data():
     num_train = len(train_locs)
     num_test = len(test_locs)
     
-    # NOTE: io.imread() reads images in as numpy.ndarray
+    # initialize empty arrays for training and test data
+    x_train = np.zeros((num_train, 96*96))
+    x_train_IDs = []
+    x_test = np.zeros((num_test, 96*96))
+    x_test_IDs = []
+    # y_train = I should be able to read in the csv directly actually....
     
-""" Above is supposed to be based on below
-
-def read_data():
+    # get true labels for training data
+    y_train_df = pd.read_csv("train_labels.csv", header=0)
     
-    # get image filenames
-    cat_locs = glob.glob('petdataset/catsfolder/*.jpg')
-    dog_locs = glob.glob('petdataset/dogsfolder/*.jpg')
-    num_cats = len(cat_locs)
-    num_dogs = len(dog_locs)
+    # Load data, reshape into a 1D vector and save a list of the file IDs
+    for i, img_file in enumerate(train_locs):
+        img = io.imread(img_file)        # NOTE: io.imread() reads images in as numpy.ndarray
+        img = img.reshape(1,96*96,3)
+        x_train[i,:] = img
+        x_train_IDs.append(img_file[6:-4])
     
-    # initialize empty arrays
-    X_cats = np.zeros((num_cats,64*64))
-    X_dogs = np.zeros((num_dogs,64*64))
-    y_cats = np.zeros((num_cats,1))
-    y_dogs = np.zeros((num_dogs,1))
-              
-    #Load data, reshape into a 1D vector and set labels
+    for i, img_file in enumerate(test_locs):
+        img = io.imread(img_file)        # NOTE: io.imread() reads images in as numpy.ndarray
+        img = img.reshape(1,96*96,3)
+        x_test[i,:] = img
+        x_test_IDs.append(img_file[5:-4])
     
-    keep_track = 0
-
-    for i in range(num_cats):
-        img = cat_locs[i]
-        im = io.imread(img)
-        im = im.reshape(64*64)
-        X_cats[i,:] = im
-        y_cats[i] = -1.0
-        keep_track += 1
-
-    for i in range(num_dogs):
-        img = dog_locs[i]
-        im = io.imread(img)
-        im = im.reshape(64*64)
-        X_dogs[i,:] = im
-        y_dogs[i] = 1.0
-        keep_track += 1
-    
-    # combine both datasets
-    X = np.append(X_cats,X_dogs,0)
-    y = np.append(y_cats,y_dogs)
-    
-    return X, y 
-
-"""
+    return x_train, x_train_IDs, x_test, x_test_IDs, y_train_df
