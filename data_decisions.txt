@@ -1,0 +1,25 @@
+********************************************************************************
+**   Parker Dunn                                                              **
+**   Created on July 8th, 2022                                                **
+**                                                                            **
+**   Assignment for COURSERA: Introduction to Deep Learning (via CU Boulder)  **
+**   Week 3 - CNN Cancer Detection Kaggle Mini-Project                        **
+**                                                                            **
+**            ##### GENERAL DATA DECISIONS ####                               **
+**                                                                            **
+********************************************************************************
+
+Training dataset
+- 220,025 images
+
+Testing dataset
+- approx. 50,000 images
+- I will not use this dataset except for during the submission process.
+- If I submit more than once, then I will be influencing the model with the testing data.
+- However, my goal will be primarily to assess my models with a different dataset and only
+    my results with the 50k testing images once.
+    
+Local Testing Data
+*** I will reserve the final 20,025 images listed by ID in "train_labels.csv" as a testing set ***
+- The remaining 200,000 images will be used for training and validation!
+- Therefore, I can use index values from 0 to 199,999 from "trian_labels.csv" for preparing my CNN.
