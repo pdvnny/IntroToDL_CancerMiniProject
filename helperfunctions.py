@@ -76,8 +76,25 @@ def show_training_image(img_info):
     plt.gca().add_patch(rectangle)
     plt.legend(["Classification Region"])
     
+def show_training_images(img_info, dim):
+    fig, axes = plt.subplots(nrows=dim[0], ncols=dim[1], figsize=(10,8))
     
-
+    ax = axes.flatten()
+    plt.subplots_adjust(hspace=0.4)
+    
+    for i in range(len(img_info.index)):
+        file = "train/" + img_info.loc[i,"id"] + ".tif"
+        image = io.imread(file)
+        ax[i].imshow(image)
+        ax[i].set_title("{}\n Class: {}".format(img_info.loc[i,"id"], img_info.loc[i,"label"]))
+        rectangle = plt.Rectangle((32,32), 32, 32, ec="red", linewidth=1.5, fill=False)
+        ax[i].add_patch(rectangle)
+        ax[i].legend(["Classification Region"])
+        
+def load_image_data(img):
+    file = "train/"+img+".tif"
+    image = io.imread(file)
+    return image
 
 """ From work on another projeect basically ... I used modified version above
 
