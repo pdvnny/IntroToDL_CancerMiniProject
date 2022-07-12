@@ -14,7 +14,7 @@ from skimage import io
 import pandas as pd
 import numpy as np
 import glob
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 # import seaborn as sns
 
 # This is the right idea now ... but I cannot load the entire dataset on my device. 
@@ -22,8 +22,13 @@ import matplotlib.pyplot as plt
 
 def read_data():
     # get image filenames
+    
     train_locs = glob.glob("train/*.tif")
     test_locs = glob.glob("test/*.tif")
+    
+    #train_locs = glob.glob("data/train/*.tif")
+    #test_locs = glob.glob("data/test/*.tif")
+    
     num_train = len(train_locs)
     num_test = len(test_locs)
     
@@ -55,8 +60,13 @@ def read_data():
 
 def load_image_info():
     # get image filenames
-    train_locs = glob.glob("train/*.tif")
-    test_locs = glob.glob("test/*.tif")
+    
+    # train_locs = glob.glob("train/*.tif")
+    # test_locs = glob.glob("test/*.tif")
+    
+    train_locs = glob.glob("data/train/*.tif")
+    test_locs = glob.glob("data/train/*.tif")
+    
     num_train = len(train_locs)
     num_test = len(test_locs)
     
@@ -92,7 +102,8 @@ def show_training_images(img_info, dim):
         ax[i].legend(["Classification Region"])
         
 def load_image_data(img):
-    file = "train/"+img+".tif"
+    #file = "train/"+img+".tif"
+    file = "data/train/"+img+".tif"
     image = io.imread(file)
     return image
 
