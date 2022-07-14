@@ -48,6 +48,10 @@ Step 2 -> (15 pts) Exploratory Data Analysis (EDA) - Inspect, Visualize, and Cle
 Step 3 -> (25 pts) Model Architecture
 		-- Compare multiple architectures and tune parameters
 Step 4 -> (35 pts) Results and Analysis
+		-- Hyperparameter tuning
+		-- Try different architectures for comparison
+		-- Apply techniques to improve training or performance
+		
 Step 5 -> (15 pts) Conclusion
 Step 6 -> (35 pts) Produce Deliverables
 

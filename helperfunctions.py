@@ -14,7 +14,7 @@ from skimage import io
 import pandas as pd
 import numpy as np
 import glob
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 # import seaborn as sns
 
 # This is the right idea now ... but I cannot load the entire dataset on my device. 
