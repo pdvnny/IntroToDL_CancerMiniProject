@@ -2,7 +2,7 @@
 
 (1) - (3) No notes; still trying to figure out what I am doing
 
-(4) Controlled "batch_size" now... don't expect much improvement
+(4) Controlled "batch_size" now... didn't expect much improvement
 
 	batch_size -> 100
 	epochs -> 20
@@ -18,5 +18,68 @@
 
 (5) Re-arranged the jupyter notebook ... basically re-ran the same model design
 
----- Thursday, July 14, 2022 ----
+---------- Tuesday, July 19, 2022 ----------
 
+(6) Re-run of code from last time
+
+(7) Added another set of [Conv-Conv-Maxpool]
+
+	Results:
+	-- Still bad results there was no improvement over the course of training
+
+	Changes:
+	-- I'm going to try increasing the number of samples to 10000 images just one time
+
+
+(8) Increased the number of images used and increased the learning rate to make sure I am actually making progress
+
+	-- Number of images ==> 9000
+	-- Learning rate:  0.001 ==> 0.01
+
+	Results:
+	-- Did not help at all ... still no improvement in results
+	-- No idea what is going on...
+
+	Changes:
+	-- I'm going to try changing things around so that they are more similar to the CNN Tutorial from TensorFlow
+
+(9) ACTUALLY -> I updated data types to make sure everything is a float ... let's see if that fixes anything
+
+	Results:
+	-- This did not seem to help and ended up throwing an obsure error (I don't think the error necessarily caused a prohibitive problem but it didn't seem ideal)
+
+
+(10) Removed activation function from my last layer
+
+	-- BinaryCrossEntropy: from_logits   False -> True
+	-- "sigmoid" activation removed
+
+	Results:
+	-- Hmmm ... weird results
+	-- There did appear to be some actual training that happened
+	-- However, the model still quickly capped out at roughly 60% accuracy.
+
+(11) Increased the batch size to 1000 (just to see what would happen)
+
+	-- "batch_size": 100 --> 1000
+
+	Results:
+	-- Worst run yet! Holy shit ... immediatley the adjustments were so big that training failed
+	-- In the "history", the accuracy dropped below 50% and stayed there after the first epoch
+
+(12) Kept the batch size the same and decreased the learning rate
+
+	REASONING: When I actually train the model, I will want to use relatively large batches compared to what I am using now. Maybe 1000 images is on the high end of a batch_size but I wanted to play around with it to see if it worked.
+
+
+	Results:
+	-- This went better!
+	-- The lower learning rate helped, BUT i'm going to drop the batch size back down a little -> 200
+	-- Training is still capping out nearly instantly!
+
+** Stopped here for the day **
+
+
+
+
+	

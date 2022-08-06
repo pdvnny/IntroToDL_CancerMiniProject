@@ -1,0 +1,79 @@
+---------- Thursday, July 21, 2022 ----------
+
+(13) Did some research and making quite a few changes
+
+	Minor adjustments:
+	-- Output layer & BinaryCrossentropy --> reintroduced "sigmoid" activation & from_logits=False
+
+	-- Using 5x5 filter in the first layer!
+	-- Changed "padding" argument from "valid" --> "same" after the first [Conv-Conv-Pooling] section
+	-- MaxPool2D -> introduced strides to avoid overlap among pooling
+
+	Major Adjustments:
+	-- Changing the optimizer to "adam"
+	-- No longer using model.fit(); I will customize my own training and validation procedures
+		- train_validation_split()
+		- load_batch()
+		- train_test() -> INPUTS: (1) number of batches, (2) avilable training and validation files
+	-- Cropping the images now!
+		- Started with 48 x 48 image instead of 96x96
+	-- INCREASED THE DEPTH OF THE NETWORK
+		- added another [Conv-Conv-Pooling]
+
+
+
+	LATER...
+	-- Add batch normalization layers!
+
+---------- Monday, July 25, 2022 ----------
+
+** Took some time away trying to figure out a new way to work with image data **
+
+(14) New TF built-in implementation for loading an dusing image data!
+
+	-- This helped a ton! - started to see actually training results
+	-- Accuracy improved a lot and the number of images that I can work with is much larger
+	-- I'm not giong to cover all the details that I changed because the only thing that really matters is that i can access a complete dataset now
+
+(15) Updates after playing around with the new datapipeline
+
+	-- Introduced a limit on the number of steps per epoch
+		- Reason: more control over the training process
+	-- Introduced dropout layers
+
+	Results
+	- Not great... the training stopped once it had used all of the images once ... not quite what I expected "steps_per_epoch" to do
+
+	NEXT: Ran the same design again without the "steps_per_epoch" limitation to see how the model would turn out
+
+(16) No limit on the number of steps per epoch ... testing how much Dropout layers help
+
+	-- Mid-run comment: dropout is causing change, but it seems to have reduced the accuracy of the model without providing much additional assistance.
+	-- Reached a limit on accuracy ... accuracy leveled out completely
+
+(17) Based on another script I found for this task, I think I wanna push in two extreme directions.
+
+	Option 1: Really simple model with small number of layers and limited normalization
+
+
+	Option 2: Extremely deep model with dropout, batch normalization, activation layers on the convolution layers, etc.
+
+
+	I'm going to give option 2 a shot since many examples I have seen do that.
+
+	Changes:
+	-- Added in more layers
+	-- Added normalization (I tried anyway)
+
+(18) Adding in more layers has not helped much at first ... trying some variations to see if it helps.
+
+	-- Reducing the number of filters at the beginning helped ... trying to create a deeper model now
+	-- I think I am getting models that are too deep given that I am not using the "skip connection" thing in ResNet
+
+---------- Tuesday, July 26, 2022 ----------
+
+(19) I've got some decent models - not great but okay.
+
+	I'm going to go with a relatively small model. I'm just playing around with some final touch to figure out what works best.
+
+	I've given up on putting anymore time into "locking" this down

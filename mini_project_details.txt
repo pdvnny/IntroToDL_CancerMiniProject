@@ -11,10 +11,7 @@
 
 ******************* CURRENT TO-DO **************************************
 
-	-- Create GitHub repo for project
-	-- Add GitHub repo link to Jupyter Notebook
 
-	-- 
 
 *************** THREE DELIVERABLES REQUIRED ****************************
 
@@ -49,7 +46,6 @@ Step 3 -> (25 pts) Model Architecture
 		-- Compare multiple architectures and tune parameters
 Step 4 -> (35 pts) Results and Analysis
 		-- Hyperparameter tuning
-		-- Try different architectures for comparison
 		-- Apply techniques to improve training or performance
 		
 Step 5 -> (15 pts) Conclusion

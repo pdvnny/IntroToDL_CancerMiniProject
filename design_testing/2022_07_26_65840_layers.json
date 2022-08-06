@@ -1,0 +1,1 @@
+["input", "conv", "maxpool", "norm", "conv", "conv", "maxpool", "norm", "flatten", "dense", "dense", "dense"]
